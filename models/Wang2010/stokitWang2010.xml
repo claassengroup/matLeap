@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<Model>
+  <Description>Wang2010</Description>
+  <NumberOfReactions>8</NumberOfReactions>
+  <NumberOfSpecies>5</NumberOfSpecies>
+  <ParametersList>
+    <Parameter>
+      <Id>unnamed</Id>
+      <Expression>1</Expression>
+      
+    </Parameter>
+    <Parameter>
+      <Id>k1</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>k2</Id>
+      <Expression>0.7</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>k3</Id>
+      <Expression>0.35</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>k4</Id>
+      <Expression>0.3</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>k5</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>k6</Id>
+      <Expression>0.9</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>k7</Id>
+      <Expression>0.2</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>k8</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+  </ParametersList>
+  <ReactionsList>
+    <Reaction>
+      <Id>R1</Id>
+      <Type>mass-action</Type>
+      <Rate>k1</Rate>
+      <Reactants>
+        <SpeciesReference id="DNA" stoichiometry="1"/>
+        <SpeciesReference id="P2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="DNAP2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R2</Id>
+      <Type>mass-action</Type>
+      <Rate>k2</Rate>
+      <Reactants>
+        <SpeciesReference id="DNAP2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="DNA" stoichiometry="1"/>
+        <SpeciesReference id="P2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R3</Id>
+      <Type>mass-action</Type>
+      <Rate>k3</Rate>
+      <Reactants>
+        <SpeciesReference id="DNA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="DNA" stoichiometry="1"/>
+        <SpeciesReference id="RNA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R4</Id>
+      <Type>mass-action</Type>
+      <Rate>k4</Rate>
+      <Reactants>
+        <SpeciesReference id="RNA" stoichiometry="1"/>
+      </Reactants>
+    </Reaction>
+    <Reaction>
+      <Id>R5</Id>
+      <Type>mass-action</Type>
+      <Rate>k5</Rate>
+      <Reactants>
+        <SpeciesReference id="P" stoichiometry="2"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="P2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R6</Id>
+      <Type>mass-action</Type>
+      <Rate>k6</Rate>
+      <Reactants>
+        <SpeciesReference id="P2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="P" stoichiometry="2"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R7</Id>
+      <Type>mass-action</Type>
+      <Rate>k7</Rate>
+      <Reactants>
+        <SpeciesReference id="RNA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="RNA" stoichiometry="1"/>
+        <SpeciesReference id="P" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R8</Id>
+      <Type>mass-action</Type>
+      <Rate>k8</Rate>
+      <Reactants>
+        <SpeciesReference id="P" stoichiometry="1"/>
+      </Reactants>
+    </Reaction>
+  </ReactionsList>
+  <SpeciesList>
+    <Species>
+      <Id>DNA</Id>
+      <InitialPopulation>200</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>P2</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>DNAP2</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>RNA</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>P</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+  </SpeciesList>
+</Model>

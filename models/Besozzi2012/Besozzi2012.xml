@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <annotation>
+    <SimBiology xmlns="http://www.mathworks.com">
+      <Version Major="5" Minor="2" Point="0"/>
+    </SimBiology>
+  </annotation>
+  <model id="MODEL1309060000" name="Besozzi2012 - Oscillatory regimes in the Ras/cAMP/PKA pathway in S.cerevisiae">
+    <listOfUnitDefinitions>
+      <unitDefinition id="MWUSERUNIT_per_second" name="per_second">
+        <listOfUnits>
+          <unit kind="second" exponent="-1"/>
+          <unit kind="dimensionless"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="compartment01" name="compartment01" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Ras2_GDP" name="Ras2_GDP" compartment="compartment01" initialAmount="20000"/>
+      <species id="Cdc25" name="Cdc25" compartment="compartment01" initialAmount="300"/>
+      <species id="Ras2_GDP_Cdc25" name="Ras2_GDP_Cdc25" compartment="compartment01" initialAmount="0"/>
+      <species id="Ras2_Cdc25" name="Ras2_Cdc25" compartment="compartment01" initialAmount="0"/>
+      <species id="GDP" name="GDP" compartment="compartment01" initialAmount="1500000" boundaryCondition="true" constant="true"/>
+      <species id="GTP" name="GTP" compartment="compartment01" initialAmount="5000000" boundaryCondition="true" constant="true"/>
+      <species id="Ras2_GTP_Cdc25" name="Ras2_GTP_Cdc25" compartment="compartment01" initialAmount="0"/>
+      <species id="Ras2_GTP" name="Ras2_GTP" compartment="compartment01" initialAmount="0"/>
+      <species id="Ira2" name="Ira2" compartment="compartment01" initialAmount="200"/>
+      <species id="Ras2_GTP_Ira2" name="Ras2_GTP_Ira2" compartment="compartment01" initialAmount="0"/>
+      <species id="CYR1" name="CYR1" compartment="compartment01" initialAmount="200"/>
+      <species id="Ras2_GTP_CYR1" name="Ras2_GTP_CYR1" compartment="compartment01" initialAmount="0"/>
+      <species id="ATP" name="ATP" compartment="compartment01" initialAmount="24000000" boundaryCondition="true" constant="true"/>
+      <species id="cAMP" name="cAMP" compartment="compartment01" initialAmount="0"/>
+      <species id="PKA" name="PKA" compartment="compartment01" initialAmount="2500"/>
+      <species id="cAMP_PKA" name="cAMP_PKA" compartment="compartment01" initialAmount="0"/>
+      <species id="IIcAMP_PKA" name="IIcAMP_PKA" compartment="compartment01" initialAmount="0"/>
+      <species id="IIIcAMP_PKA" name="IIIcAMP_PKA" compartment="compartment01" initialAmount="0"/>
+      <species id="IVcAMP_PKA" name="IVcAMP_PKA" compartment="compartment01" initialAmount="0"/>
+      <species id="C" name="C" compartment="compartment01" initialAmount="0"/>
+      <species id="R_2cAMP" name="R_2cAMP" compartment="compartment01" initialAmount="0"/>
+      <species id="R" name="R" compartment="compartment01" initialAmount="0"/>
+      <species id="R_C" name="R_C" compartment="compartment01" initialAmount="0"/>
+      <species id="Pde1" name="Pde1" compartment="compartment01" initialAmount="1400"/>
+      <species id="Pde1f" name="Pde1f" compartment="compartment01" initialAmount="0"/>
+      <species id="cAMP_Pde1f" name="cAMP_Pde1f" compartment="compartment01" initialAmount="0"/>
+      <species id="AMP" name="AMP" compartment="compartment01" initialAmount="0"/>
+      <species id="PPA2" name="PPA2" compartment="compartment01" initialAmount="4000"/>
+      <species id="Pde2" name="Pde2" compartment="compartment01" initialAmount="6500"/>
+      <species id="cAMP_Pde2" name="cAMP_Pde2" compartment="compartment01" initialAmount="0"/>
+      <species id="Cdc25f" name="Cdc25f" compartment="compartment01" initialAmount="0"/>
+      <species id="Ira2P" name="Ira2P" compartment="compartment01" initialAmount="0"/>
+      <species id="Ras2_GTP_Ira2P" name="Ras2_GTP_Ira2P" compartment="compartment01" initialAmount="0"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="K0" name="K0" value="1"/>
+      <parameter id="K1" name="K1" value="1"/>
+      <parameter id="K2" name="K2" value="1.5"/>
+      <parameter id="K3" name="K3" value="1"/>
+      <parameter id="K4" name="K4" value="1"/>
+      <parameter id="K5" name="K5" value="1"/>
+      <parameter id="K6" name="K6" value="1"/>
+      <parameter id="K7" name="K7" value="1"/>
+      <parameter id="K8" name="K8" value="0.01"/>
+      <parameter id="K9" name="K9" value="0.25"/>
+      <parameter id="K10" name="K10" value="0.001"/>
+      <parameter id="K11" name="K11" value="2.1e-06"/>
+      <parameter id="K12" name="K12" value="0.001"/>
+      <parameter id="K13" name="K13" value="1e-05"/>
+      <parameter id="K14" name="K14" value="1e-05"/>
+      <parameter id="K15" name="K15" value="1e-05"/>
+      <parameter id="K16" name="K16" value="1e-05"/>
+      <parameter id="K17" name="K17" value="0.1"/>
+      <parameter id="K18" name="K18" value="0.1"/>
+      <parameter id="K19" name="K19" value="0.1"/>
+      <parameter id="K20" name="K20" value="0.1"/>
+      <parameter id="K21" name="K21" value="1"/>
+      <parameter id="K22" name="K22" value="1"/>
+      <parameter id="K23" name="K23" value="0.75"/>
+      <parameter id="K24" name="K24" value="1"/>
+      <parameter id="K25" name="K25" value="1e-06"/>
+      <parameter id="K26" name="K26" value="0.1"/>
+      <parameter id="K27" name="K27" value="0.1"/>
+      <parameter id="K28" name="K28" value="7.5"/>
+      <parameter id="K29" name="K29" value="0.0001"/>
+      <parameter id="K30" name="K30" value="0.0001"/>
+      <parameter id="K31" name="K31" value="1"/>
+      <parameter id="K32" name="K32" value="1.7"/>
+      <parameter id="K33" name="K33" value="1"/>
+      <parameter id="K34" name="K34" value="0.01"/>
+      <parameter id="K35" name="K35" value="0.001"/>
+      <parameter id="K36" name="K36" value="1.25"/>
+      <parameter id="K37" name="K37" value="2.5"/>
+      <parameter id="K38" name="K38" value="10"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="R0" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GDP"/>
+          <speciesReference species="Cdc25"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GDP_Cdc25"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K0 </ci>
+              <ci> Ras2_GDP </ci>
+              <ci> Cdc25 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R1" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GDP_Cdc25"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GDP"/>
+          <speciesReference species="Cdc25"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K1 </ci>
+              <ci> Ras2_GDP_Cdc25 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GDP_Cdc25"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_Cdc25"/>
+          <speciesReference species="GDP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K2 </ci>
+              <ci> Ras2_GDP_Cdc25 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R3" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_Cdc25"/>
+          <speciesReference species="GDP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GDP_Cdc25"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K3 </ci>
+              <ci> Ras2_Cdc25 </ci>
+              <ci> GDP </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R4" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_Cdc25"/>
+          <speciesReference species="GTP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GTP_Cdc25"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K4 </ci>
+              <ci> Ras2_Cdc25 </ci>
+              <ci> GTP </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R5" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GTP_Cdc25"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_Cdc25"/>
+          <speciesReference species="GTP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K5 </ci>
+              <ci> Ras2_GTP_Cdc25 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R6" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GTP_Cdc25"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cdc25"/>
+          <speciesReference species="Ras2_GTP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K6 </ci>
+              <ci> Ras2_GTP_Cdc25 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R7" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Cdc25"/>
+          <speciesReference species="Ras2_GTP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GTP_Cdc25"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K7 </ci>
+              <ci> Cdc25 </ci>
+              <ci> Ras2_GTP </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R8" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GTP"/>
+          <speciesReference species="Ira2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GTP_Ira2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K8 </ci>
+              <ci> Ras2_GTP </ci>
+              <ci> Ira2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R9" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GTP_Ira2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GDP"/>
+          <speciesReference species="Ira2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K9 </ci>
+              <ci> Ras2_GTP_Ira2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R10" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GTP"/>
+          <speciesReference species="CYR1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GTP_CYR1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K10 </ci>
+              <ci> Ras2_GTP </ci>
+              <ci> CYR1 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R11" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GTP_CYR1"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GTP_CYR1"/>
+          <speciesReference species="cAMP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K11 </ci>
+              <ci> Ras2_GTP_CYR1 </ci>
+              <ci> ATP </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R12" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ira2"/>
+          <speciesReference species="Ras2_GTP_CYR1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GDP"/>
+          <speciesReference species="Ira2"/>
+          <speciesReference species="CYR1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K12 </ci>
+              <ci> Ira2 </ci>
+              <ci> Ras2_GTP_CYR1 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R13" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP_PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K13 </ci>
+              <ci> cAMP </ci>
+              <ci> PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R14" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="cAMP_PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IIcAMP_PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K14 </ci>
+              <ci> cAMP </ci>
+              <ci> cAMP_PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R15" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="IIcAMP_PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IIIcAMP_PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K15 </ci>
+              <ci> cAMP </ci>
+              <ci> IIcAMP_PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R16" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="IIIcAMP_PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IVcAMP_PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K16 </ci>
+              <ci> cAMP </ci>
+              <ci> IIIcAMP_PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R17" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="IVcAMP_PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="IIIcAMP_PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K17 </ci>
+              <ci> IVcAMP_PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R18" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="IIIcAMP_PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="IIcAMP_PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K18 </ci>
+              <ci> IIIcAMP_PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R19" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="IIcAMP_PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="cAMP_PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K19 </ci>
+              <ci> IIcAMP_PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R20" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP_PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K20 </ci>
+              <ci> cAMP_PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R21" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="IVcAMP_PKA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C" stoichiometry="2"/>
+          <speciesReference species="R_2cAMP" stoichiometry="2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K21 </ci>
+              <ci> IVcAMP_PKA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R22" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="R_2cAMP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP" stoichiometry="2"/>
+          <speciesReference species="R"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K22 </ci>
+              <ci> R_2cAMP </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R23" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="C"/>
+          <speciesReference species="R"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="R_C"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K23 </ci>
+              <ci> C </ci>
+              <ci> R </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R24" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="R_C" stoichiometry="2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="PKA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K24 </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> R_C </ci>
+                  <apply>
+                    <minus/>
+                    <ci> R_C </ci>
+                    <cn type="integer"> 1 </cn>
+                  </apply>
+                </apply>
+                <cn type="integer"> 2 </cn>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R25" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="C"/>
+          <speciesReference species="Pde1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C"/>
+          <speciesReference species="Pde1f"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K25 </ci>
+              <ci> C </ci>
+              <ci> Pde1 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R26" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="Pde1f"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP_Pde1f"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K26 </ci>
+              <ci> cAMP </ci>
+              <ci> Pde1f </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R27" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP_Pde1f"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="Pde1f"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K27 </ci>
+              <ci> cAMP_Pde1f </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R28" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP_Pde1f"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Pde1f"/>
+          <speciesReference species="AMP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K28 </ci>
+              <ci> cAMP_Pde1f </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R29" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Pde1f"/>
+          <speciesReference species="PPA2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Pde1"/>
+          <speciesReference species="PPA2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K29 </ci>
+              <ci> Pde1f </ci>
+              <ci> PPA2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R30" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="Pde2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP_Pde2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K30 </ci>
+              <ci> cAMP </ci>
+              <ci> Pde2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R31" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP_Pde2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cAMP"/>
+          <speciesReference species="Pde2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K31 </ci>
+              <ci> cAMP_Pde2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R32" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cAMP_Pde2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AMP"/>
+          <speciesReference species="Pde2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K32 </ci>
+              <ci> cAMP_Pde2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R33" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Cdc25"/>
+          <speciesReference species="C"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C"/>
+          <speciesReference species="Cdc25f"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K33 </ci>
+              <ci> Cdc25 </ci>
+              <ci> C </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R34" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="PPA2"/>
+          <speciesReference species="Cdc25f"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cdc25"/>
+          <speciesReference species="PPA2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K34 </ci>
+              <ci> PPA2 </ci>
+              <ci> Cdc25f </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R35" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ira2"/>
+          <speciesReference species="C"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C"/>
+          <speciesReference species="Ira2P"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K35 </ci>
+              <ci> Ira2 </ci>
+              <ci> C </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R36" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GTP"/>
+          <speciesReference species="Ira2P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GTP_Ira2P"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K36 </ci>
+              <ci> Ras2_GTP </ci>
+              <ci> Ira2P </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R37" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ras2_GTP_Ira2P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ras2_GDP"/>
+          <speciesReference species="Ira2P"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K37 </ci>
+              <ci> Ras2_GTP_Ira2P </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R38" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="Ira2P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ira2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K38 </ci>
+              <ci> Ira2P </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

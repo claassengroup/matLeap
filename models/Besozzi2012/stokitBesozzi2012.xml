@@ -1,0 +1,779 @@
+<?xml version="1.0"?>
+<Model>
+  <Description>MODEL1309060000</Description>
+  <NumberOfReactions>39</NumberOfReactions>
+  <NumberOfSpecies>33</NumberOfSpecies>
+  <ParametersList>
+    <Parameter>
+      <Id>compartment01</Id>
+      <Expression>1</Expression>
+      
+    </Parameter>
+    <Parameter>
+      <Id>K0</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K1</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K2</Id>
+      <Expression>1.5</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K3</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K4</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K5</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K6</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K7</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K8</Id>
+      <Expression>0.01</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K9</Id>
+      <Expression>0.25</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K10</Id>
+      <Expression>0.001</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K11</Id>
+      <Expression>2.1e-006</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K12</Id>
+      <Expression>0.001</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K13</Id>
+      <Expression>1e-005</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K14</Id>
+      <Expression>1e-005</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K15</Id>
+      <Expression>1e-005</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K16</Id>
+      <Expression>1e-005</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K17</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K18</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K19</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K20</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K21</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K22</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K23</Id>
+      <Expression>0.75</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K24</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K25</Id>
+      <Expression>1e-006</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K26</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K27</Id>
+      <Expression>0.1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K28</Id>
+      <Expression>7.5</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K29</Id>
+      <Expression>0.0001</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K30</Id>
+      <Expression>0.0001</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K31</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K32</Id>
+      <Expression>1.7</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K33</Id>
+      <Expression>1</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K34</Id>
+      <Expression>0.01</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K35</Id>
+      <Expression>0.001</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K36</Id>
+      <Expression>1.25</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K37</Id>
+      <Expression>2.5</Expression>
+    </Parameter>
+    <Parameter>
+      <Id>K38</Id>
+      <Expression>10</Expression>
+    </Parameter>
+  </ParametersList>
+  <ReactionsList>
+    <Reaction>
+      <Id>R0</Id>
+      <Type>mass-action</Type>
+      <Rate>K0</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GDP" stoichiometry="1"/>
+        <SpeciesReference id="Cdc25" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GDP_Cdc25" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R1</Id>
+      <Type>mass-action</Type>
+      <Rate>K1</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GDP_Cdc25" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GDP" stoichiometry="1"/>
+        <SpeciesReference id="Cdc25" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R2</Id>
+      <Type>mass-action</Type>
+      <Rate>K2</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GDP_Cdc25" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_Cdc25" stoichiometry="1"/>
+        <SpeciesReference id="GDP" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R3</Id>
+      <Type>mass-action</Type>
+      <Rate>K3</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_Cdc25" stoichiometry="1"/>
+        <SpeciesReference id="GDP" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GDP_Cdc25" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R4</Id>
+      <Type>mass-action</Type>
+      <Rate>K4</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_Cdc25" stoichiometry="1"/>
+        <SpeciesReference id="GTP" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GTP_Cdc25" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R5</Id>
+      <Type>mass-action</Type>
+      <Rate>K5</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GTP_Cdc25" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_Cdc25" stoichiometry="1"/>
+        <SpeciesReference id="GTP" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R6</Id>
+      <Type>mass-action</Type>
+      <Rate>K6</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GTP_Cdc25" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Cdc25" stoichiometry="1"/>
+        <SpeciesReference id="Ras2_GTP" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R7</Id>
+      <Type>mass-action</Type>
+      <Rate>K7</Rate>
+      <Reactants>
+        <SpeciesReference id="Cdc25" stoichiometry="1"/>
+        <SpeciesReference id="Ras2_GTP" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GTP_Cdc25" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R8</Id>
+      <Type>mass-action</Type>
+      <Rate>K8</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GTP" stoichiometry="1"/>
+        <SpeciesReference id="Ira2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GTP_Ira2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R9</Id>
+      <Type>mass-action</Type>
+      <Rate>K9</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GTP_Ira2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GDP" stoichiometry="1"/>
+        <SpeciesReference id="Ira2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R10</Id>
+      <Type>mass-action</Type>
+      <Rate>K10</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GTP" stoichiometry="1"/>
+        <SpeciesReference id="CYR1" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GTP_CYR1" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R11</Id>
+      <Type>mass-action</Type>
+      <Rate>K11</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GTP_CYR1" stoichiometry="1"/>
+        <SpeciesReference id="ATP" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GTP_CYR1" stoichiometry="1"/>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R12</Id>
+      <Type>mass-action</Type>
+      <Rate>K12</Rate>
+      <Reactants>
+        <SpeciesReference id="Ira2" stoichiometry="1"/>
+        <SpeciesReference id="Ras2_GTP_CYR1" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GDP" stoichiometry="1"/>
+        <SpeciesReference id="Ira2" stoichiometry="1"/>
+        <SpeciesReference id="CYR1" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R13</Id>
+      <Type>mass-action</Type>
+      <Rate>K13</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP_PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R14</Id>
+      <Type>mass-action</Type>
+      <Rate>K14</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="cAMP_PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="IIcAMP_PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R15</Id>
+      <Type>mass-action</Type>
+      <Rate>K15</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="IIcAMP_PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="IIIcAMP_PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R16</Id>
+      <Type>mass-action</Type>
+      <Rate>K16</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="IIIcAMP_PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="IVcAMP_PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R17</Id>
+      <Type>mass-action</Type>
+      <Rate>K17</Rate>
+      <Reactants>
+        <SpeciesReference id="IVcAMP_PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="IIIcAMP_PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R18</Id>
+      <Type>mass-action</Type>
+      <Rate>K18</Rate>
+      <Reactants>
+        <SpeciesReference id="IIIcAMP_PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="IIcAMP_PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R19</Id>
+      <Type>mass-action</Type>
+      <Rate>K19</Rate>
+      <Reactants>
+        <SpeciesReference id="IIcAMP_PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="cAMP_PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R20</Id>
+      <Type>mass-action</Type>
+      <Rate>K20</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP_PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R21</Id>
+      <Type>mass-action</Type>
+      <Rate>K21</Rate>
+      <Reactants>
+        <SpeciesReference id="IVcAMP_PKA" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="C" stoichiometry="2"/>
+        <SpeciesReference id="R_2cAMP" stoichiometry="2"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R22</Id>
+      <Type>mass-action</Type>
+      <Rate>K22</Rate>
+      <Reactants>
+        <SpeciesReference id="R_2cAMP" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP" stoichiometry="2"/>
+        <SpeciesReference id="R" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R23</Id>
+      <Type>mass-action</Type>
+      <Rate>K23</Rate>
+      <Reactants>
+        <SpeciesReference id="C" stoichiometry="1"/>
+        <SpeciesReference id="R" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="R_C" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R24</Id>
+      <Type>mass-action</Type>
+      <Rate>2*(K24*(1/2))</Rate>
+      <Reactants>
+        <SpeciesReference id="R_C" stoichiometry="2"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="PKA" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R25</Id>
+      <Type>mass-action</Type>
+      <Rate>K25</Rate>
+      <Reactants>
+        <SpeciesReference id="C" stoichiometry="1"/>
+        <SpeciesReference id="Pde1" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="C" stoichiometry="1"/>
+        <SpeciesReference id="Pde1f" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R26</Id>
+      <Type>mass-action</Type>
+      <Rate>K26</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="Pde1f" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP_Pde1f" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R27</Id>
+      <Type>mass-action</Type>
+      <Rate>K27</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP_Pde1f" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="Pde1f" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R28</Id>
+      <Type>mass-action</Type>
+      <Rate>K28</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP_Pde1f" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Pde1f" stoichiometry="1"/>
+        <SpeciesReference id="AMP" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R29</Id>
+      <Type>mass-action</Type>
+      <Rate>K29</Rate>
+      <Reactants>
+        <SpeciesReference id="Pde1f" stoichiometry="1"/>
+        <SpeciesReference id="PPA2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Pde1" stoichiometry="1"/>
+        <SpeciesReference id="PPA2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R30</Id>
+      <Type>mass-action</Type>
+      <Rate>K30</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="Pde2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP_Pde2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R31</Id>
+      <Type>mass-action</Type>
+      <Rate>K31</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP_Pde2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="cAMP" stoichiometry="1"/>
+        <SpeciesReference id="Pde2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R32</Id>
+      <Type>mass-action</Type>
+      <Rate>K32</Rate>
+      <Reactants>
+        <SpeciesReference id="cAMP_Pde2" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="AMP" stoichiometry="1"/>
+        <SpeciesReference id="Pde2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R33</Id>
+      <Type>mass-action</Type>
+      <Rate>K33</Rate>
+      <Reactants>
+        <SpeciesReference id="Cdc25" stoichiometry="1"/>
+        <SpeciesReference id="C" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="C" stoichiometry="1"/>
+        <SpeciesReference id="Cdc25f" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R34</Id>
+      <Type>mass-action</Type>
+      <Rate>K34</Rate>
+      <Reactants>
+        <SpeciesReference id="PPA2" stoichiometry="1"/>
+        <SpeciesReference id="Cdc25f" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Cdc25" stoichiometry="1"/>
+        <SpeciesReference id="PPA2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R35</Id>
+      <Type>mass-action</Type>
+      <Rate>K35</Rate>
+      <Reactants>
+        <SpeciesReference id="Ira2" stoichiometry="1"/>
+        <SpeciesReference id="C" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="C" stoichiometry="1"/>
+        <SpeciesReference id="Ira2P" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R36</Id>
+      <Type>mass-action</Type>
+      <Rate>K36</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GTP" stoichiometry="1"/>
+        <SpeciesReference id="Ira2P" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GTP_Ira2P" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R37</Id>
+      <Type>mass-action</Type>
+      <Rate>K37</Rate>
+      <Reactants>
+        <SpeciesReference id="Ras2_GTP_Ira2P" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ras2_GDP" stoichiometry="1"/>
+        <SpeciesReference id="Ira2P" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+    <Reaction>
+      <Id>R38</Id>
+      <Type>mass-action</Type>
+      <Rate>K38</Rate>
+      <Reactants>
+        <SpeciesReference id="Ira2P" stoichiometry="1"/>
+      </Reactants>
+      <Products>
+        <SpeciesReference id="Ira2" stoichiometry="1"/>
+      </Products>
+    </Reaction>
+  </ReactionsList>
+  <SpeciesList>
+    <Species>
+      <Id>Ras2_GDP</Id>
+      <InitialPopulation>20000</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Cdc25</Id>
+      <InitialPopulation>300</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ras2_GDP_Cdc25</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ras2_Cdc25</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>GDP</Id>
+      <InitialPopulation>1.5e+006</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>GTP</Id>
+      <InitialPopulation>5e+006</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ras2_GTP_Cdc25</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ras2_GTP</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ira2</Id>
+      <InitialPopulation>200</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ras2_GTP_Ira2</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>CYR1</Id>
+      <InitialPopulation>200</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ras2_GTP_CYR1</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>ATP</Id>
+      <InitialPopulation>2.4e+007</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>cAMP</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>PKA</Id>
+      <InitialPopulation>2500</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>cAMP_PKA</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>IIcAMP_PKA</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>IIIcAMP_PKA</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>IVcAMP_PKA</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>C</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>R_2cAMP</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>R</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>R_C</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Pde1</Id>
+      <InitialPopulation>1400</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Pde1f</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>cAMP_Pde1f</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>AMP</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>PPA2</Id>
+      <InitialPopulation>4000</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Pde2</Id>
+      <InitialPopulation>6500</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>cAMP_Pde2</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Cdc25f</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ira2P</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+    <Species>
+      <Id>Ras2_GTP_Ira2P</Id>
+      <InitialPopulation>0</InitialPopulation>
+    </Species>
+  </SpeciesList>
+</Model>
