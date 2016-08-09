@@ -22,6 +22,7 @@ timeIntervals = 10;
 opts = mlOptions('SYM_JAC', useSymbolicJacobian);
 
 %% Prepare paths/model
+disp('Preparing model')
 modelDir = fullfile('models', modelName);
 sbmlPath = fullfile(modelDir, [modelName '.xml']);
 sbmlModel = TranslateSBML(sbmlPath);
@@ -32,6 +33,7 @@ if (~exist(mexFuncPath,'file'))
 end
 
 %% Run simulation
+disp('Running simulation')
 X0 = [sbmlModel.species.initialAmount];
 theta = [sbmlModel.parameter.value];
 tic
@@ -39,6 +41,7 @@ tic
 toc
 
 %% Plot means / std of matLeap, Stochkit-SSA and Stochkit-TauLeaping
+disp('Plotting results (using cached StochKit results)')
 methodNames = {'matLeap'};
 methodData = cell(0,2);
 methodData(1,:) = {Time, Trajectories};

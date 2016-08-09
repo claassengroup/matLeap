@@ -46,7 +46,7 @@ tmp = dir([cppSrcPath '/*.cpp']);
 tmp = {tmp.name};
 matLeapFiles = cellfun(@(s) fullfile(cppSrcPath, s), tmp, 'UniformOutput', false);
 
-mexCmd = ['mex ' modelDir '/*.cpp ' cppSrcPath '/*.cpp -I' modelDir '/ -I. -Iboost/ -DMEX -O '];
+mexCmd = ['mex ' strjoin([modelFiles, matLeapFiles]) ' -I' modelDir '/ -I. -Iboost/ -DMEX -O '];
 
 if isunix
      mexCmd = [mexCmd '-lut -output ' mexFuncPath];
