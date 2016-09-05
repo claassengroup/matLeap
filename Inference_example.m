@@ -28,7 +28,7 @@ theta = [k_p g_p];
 
 %% run simulation
 disp('Running simulation')
-[ X, outTimes, SimTime, r, G, simStats ] = mlSimulate( str2func(mexName), modelStopTime, timeIntervals, trajectoryCount, X0, theta, opts);
+[ X, outTimes, r, G, simStats ] = mlSimulate( str2func(mexName), modelStopTime, timeIntervals, X0, theta, opts, trajectoryCount);
 disp('Done')
 
 %% show trajectory

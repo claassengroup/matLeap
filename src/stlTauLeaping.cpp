@@ -137,6 +137,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs,
 		double *X0_ = mxGetPr(p_X0);
 		PNr = mxGetN(p_Theta);
 		X0 = (double*)mxMalloc(sizeof(double) * SPNR * PNr);
+		if (X0 == NULL)
+			mexErrMsgTxt("Out of memory!");
 		for (int k = 0; k < PNr; ++k) {
 			copy(X0_, X0_+SPNR, X0+k*SPNR);
 		}
@@ -146,6 +148,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs,
 		double *Theta_ = mxGetPr(p_Theta);
 		PNr = mxGetN(p_X0);
 		Theta = (double*)mxMalloc(sizeof(double) * THNR * PNr);
+		if (Theta == NULL)
+			mexErrMsgTxt("Out of memory!");
+
 		for (int k = 0; k < PNr; ++k) {
 			copy(Theta_, Theta_+SPNR, Theta+k*THNR);
 		}
@@ -172,8 +177,16 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs,
 
 
 	double *X_out = static_cast<double*>(mxMalloc(sizeof(double)*PNr * SPNR * (NIntervals+1))); // state of the system
+	if (X_out == NULL)
+		mexErrMsgTxt("Out of memory!");
+
 	double *R_out = static_cast<double*>(mxMalloc(sizeof(double)*PNr * THNR * (NIntervals+1))); // state of the system
+	if (R_out == NULL)
+		mexErrMsgTxt("Out of memory!");
+
 	double *G_out = static_cast<double*>(mxMalloc(sizeof(double)*PNr * THNR * (NIntervals+1))); // state of the system
+	if (G_out == NULL)
+		mexErrMsgTxt("Out of memory!");
 
 	fill_n(R_out, PNr * THNR * (NIntervals+1), 0.0);
 	fill_n(G_out, PNr * THNR * (NIntervals+1), 0.0);
@@ -183,6 +196,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs,
 	std::vector<OUTPUT_HANDLE> fileHandles;
 
 	CALL_STATS *call_stats = (CALL_STATS*)mxMalloc(sizeof(CALL_STATS) * PNr);
+	if (call_stats == NULL)
+		mexErrMsgTxt("Out of memory!");
+
 
 	for (int k=0; k<PNr; k++)
 	{

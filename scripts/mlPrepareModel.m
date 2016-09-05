@@ -59,7 +59,7 @@ else
    end
    
    % find libut.lib
-   compilerConfiguration = mex.getCompilerConfigurations;
+   compilerConfiguration = mex.getCompilerConfigurations('C++','Selected');
    
    if strcmp(compilerConfiguration(1).Manufacturer, 'Microsoft')
        libDir = 'microsoft';
