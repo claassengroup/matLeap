@@ -152,7 +152,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs,
 			mexErrMsgTxt("Out of memory!");
 
 		for (int k = 0; k < PNr; ++k) {
-			copy(Theta_, Theta_+SPNR, Theta+k*THNR);
+			copy(Theta_, Theta_+THNR, Theta+k*THNR);
 		}
 		X0 = mxGetPr(p_X0);
 	} else {
