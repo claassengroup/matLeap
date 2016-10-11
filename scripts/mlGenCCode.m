@@ -35,7 +35,7 @@ function genCCode(name, snippet, inputVars, outputVar, dims, constIn, outDoubleP
     end
 
     header = sprintf('void %s(%s, %s) {\n', name, inStr, outStr);
-    output = sprintf('#include <cstring>\n');
+    output = sprintf('#include <cstring>\n#include <math.h>\n');
     output = [output, header, assignInStr];
 
     if (~outDoublePointer)

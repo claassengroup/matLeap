@@ -37,12 +37,12 @@ using namespace std;
 #define FREE free
 #endif
 
-#define S(i,j) StoichMatrix[THNR*i+j]
-#define Sed(i,j) StoichMatrix_ed[THNR*i+j]
+#define S(i,j) StoichMatrix[RENR*i+j]
+#define Sed(i,j) StoichMatrix_ed[RENR*i+j]
 
 typedef boost::minstd_rand base_generator_type;
 
-static array<vector<int>, THNR> reactionMap;
+static array<vector<int>, RENR> reactionMap;
 
 CALL_STATS tauLeaping (const double *X0, const double *Theta, int NIntervals, const double dt,
 		RUN_OPTIONS run_options, double *X, double *R, double *G,
@@ -51,16 +51,16 @@ CALL_STATS tauLeaping (const double *X0, const double *Theta, int NIntervals, co
 
 	// copy the left time point to the output
 	copy(X0, X0+SPNR, X);
-	fill_n(R, (NIntervals+1)*THNR, 0.0);
-	fill_n(G, (NIntervals+1)*THNR, 0.0);
+	fill_n(R, (NIntervals+1)*RENR, 0.0);
+	fill_n(G, (NIntervals+1)*RENR, 0.0);
 
 	CALL_STATS call_stats;
 
 	double ddt = dt/static_cast<double>(NIntervals);
 	for (int k = 0; k < NIntervals; ++k) {
 		// use previous endpoint as initial condition for this interval
-		CALL_STATS tmp_stats = tauLeapingInterval(&X[SPNR*k], &R[THNR*k], &G[THNR*k],
-				Theta, ddt, run_options, &X[SPNR*(k+1)], &R[THNR*(k+1)], &G[THNR*(k+1)]);
+		CALL_STATS tmp_stats = tauLeapingInterval(&X[SPNR*k], &R[RENR*k], &G[RENR*k],
+				Theta, ddt, run_options, &X[SPNR*(k+1)], &R[RENR*(k+1)], &G[RENR*(k+1)]);
 		call_stats.expCalls += tmp_stats.expCalls;
 		call_stats.impCalls += tmp_stats.impCalls;
 		call_stats.ssaCalls += tmp_stats.ssaCalls;
@@ -74,9 +74,9 @@ CALL_STATS tauLeaping (const double *X0, const double *Theta, int NIntervals, co
 		}
 		fileHandles[k].X << endl;
 
-		for (int j = 0; j < THNR; ++j) {
-			fileHandles[k].R << setw(10) << R[THNR*k+j];
-			fileHandles[k].G << setw(10) << G[THNR*k+j];
+		for (int j = 0; j < RENR; ++j) {
+			fileHandles[k].R << setw(10) << R[RENR*k+j];
+			fileHandles[k].G << setw(10) << G[RENR*k+j];
 		}
 		fileHandles[k].R << setw(10) << endl;
 		fileHandles[k].G << setw(10) << endl;
@@ -111,14 +111,14 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 	static boost::variate_generator<base_generator_type&, boost::uniform_real<> > uniformDist(generator, uni_dist);
 
 	static bool computeReactions = true;
-	static int StoichMatrix[SPNR * THNR];
-	static int StoichMatrix_ed[SPNR * THNR];
+	static int StoichMatrix[SPNR * RENR];
+	static int StoichMatrix_ed[SPNR * RENR];
 
 	if (computeReactions) {
 		// get stoichiometric matrix
 		computeStoichiometricMatrix(StoichMatrix, StoichMatrix_ed);
 
-		for (int j = 0; j < THNR; ++j) {
+		for (int j = 0; j < RENR; ++j) {
 			for (int i = 0; i < SPNR; ++i) {
 				if (S(i,j) != 0)
 					reactionMap[j].push_back(i);
@@ -128,7 +128,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 		computeReactions = false;
 	}
 
-//	for (int j = 0; j < THNR; ++j) {
+//	for (int j = 0; j < RENR; ++j) {
 //		cout << "reaction " << j;
 //		for (auto it=reactionMap[j].begin(); it != reactionMap[j].end(); it++)
 //		{
@@ -140,23 +140,23 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 	double t=0.0;
 
 	copy(X0, X0+SPNR, X);
-	copy(R0, R0+THNR, R);
-	copy(G0, G0+THNR, G);
+	copy(R0, R0+RENR, R);
+	copy(G0, G0+RENR, G);
 
 	double X_tmp[SPNR];
-	double a[THNR], a_tmp[THNR];
+	double a[RENR], a_tmp[RENR];
 	double *a_ptr[] = {a}, *a_tmp_ptr[] = {a_tmp};
 
 	// statistics of simulation
 	int imLeap=0, exLeap=0, SSA_call=0;
 
-	bool critical[THNR], reactantSpecies[SPNR], pe[THNR];
+	bool critical[RENR], reactantSpecies[SPNR], pe[RENR];
 	fill_n(reactantSpecies, SPNR, false);
 
 	/* properties of the stoichiometric matrix */
 	// reactant species
 	for (int i = 0; i < SPNR; i++) {
-		for (int j = 0; j < THNR; ++j) {
+		for (int j = 0; j < RENR; ++j) {
 			if (Sed(i,j) != 0)
 			{
 				reactantSpecies[i] = true;
@@ -168,8 +168,8 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 	// reversible reaction pairs
 	list<pair<int,int> > reversiblePairs;
 
-	for (int j = 0; j < THNR; ++j) {
-		for (int j2 = j+1; j2 < THNR; ++j2) {
+	for (int j = 0; j < RENR; ++j) {
+		for (int j2 = j+1; j2 < RENR; ++j2) {
 			bool isPair=true;
 			for (int i = 0; i < SPNR; ++i) {
 				isPair = isPair && (S(i,j)==-S(i,j2));
@@ -181,12 +181,12 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 	bool SSA_flag = SSA_ONLY;
 
 	// number of reaction firings
-	int k[THNR];
+	int k[RENR];
 
 	/* specific to the current state below */
 
 	// initialize variables
-	double thisG[THNR];
+	double thisG[RENR];
 	double Xnew[SPNR];
 
 
@@ -196,7 +196,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 		computePropensities(X, Theta, 0, a_ptr);
 		// compute total propensity
 		double a0 = 0.0;
-		for (int j = 0; j < THNR; ++j) {
+		for (int j = 0; j < RENR; ++j) {
 			a0 += a[j];
 		}
 
@@ -207,11 +207,11 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 		}
 
 		// Step 1: determine critical reactions
-		for (int j = 0; j < THNR; ++j) {
+		for (int j = 0; j < RENR; ++j) {
 			critical[j] = false;
 		}
 		for (int i = 0; i < SPNR; ++i) {
-			for (int j = 0; j < THNR; ++j) {
+			for (int j = 0; j < RENR; ++j) {
 				if (a[j] == 0)
 					continue;
 
@@ -224,7 +224,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 		}
 
 		// determine reactions in partial equilibrium
-		for (int j = 0; j < THNR; ++j) {
+		for (int j = 0; j < RENR; ++j) {
 			pe[j] = false;
 		}
 
@@ -245,7 +245,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 		fill_n(mu_ex, SPNR, 0.0);
 		fill_n(sigma2_ex, SPNR, 0.0);
 
-		for (int j = 0; j < THNR; ++j) {
+		for (int j = 0; j < RENR; ++j) {
 			if (critical[j])
 				continue;
 			for (auto it = reactionMap[j].begin(); it != reactionMap[j].end(); it++) {
@@ -258,7 +258,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 //		for (int i = 0; i < SPNR; ++i) {
 //			mu_ex[i] = 0;
 //			sigma2_ex[i] = 0;
-//			for (int j = 0; j < THNR; ++j) {
+//			for (int j = 0; j < RENR; ++j) {
 //				if (critical[j])
 //					continue;
 //				mu_ex[i] += static_cast<double>(S(i,j))*a[j];
@@ -289,7 +289,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 		fill_n(mu_im, SPNR, 0.0);
 		fill_n(sigma2_im, SPNR, 0.0);
 
-		for (int j = 0; j < THNR; ++j) {
+		for (int j = 0; j < RENR; ++j) {
 			if (critical[j] || pe[j])
 				continue;
 
@@ -303,7 +303,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 //		for (int i = 0; i < SPNR; ++i) {
 //			mu_im[i] = 0;
 //			sigma2_im[i] = 0;
-//			for (int j = 0; j < THNR; ++j) {
+//			for (int j = 0; j < RENR; ++j) {
 //				if (critical[j] || pe[j])
 //					continue;
 //
@@ -327,15 +327,15 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 		// loop until the proposed leap is valid
 		while (invalidLeap) {
 			// reset temp variables
-			fill_n(thisG, THNR, 0.0);
-			fill_n(k, THNR, 0);
+			fill_n(thisG, RENR, 0.0);
+			fill_n(k, RENR, 0);
 
 			for (int i = 0; i < SPNR; i++)
 				X_tmp[i] = X[i];
 
 			// total propensity of critical reactions only
 			double ac0 = 0.0;
-			for (int j = 0; j < THNR; ++j) {
+			for (int j = 0; j < RENR; ++j) {
 				if (!critical[j])
 					continue;
 				ac0 += a[j];
@@ -393,7 +393,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 				{
 					// not stiff: regular tau leaping
 					// no critical reactions firing
-					for (int j = 0; j < THNR; ++j) {
+					for (int j = 0; j < RENR; ++j) {
 						if (critical[j])
 							continue;
 
@@ -412,7 +412,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 
 					// update states for propensity computation
 					computePropensities(X_tmp, Theta, 0, a_tmp_ptr);
-					for (int j=0; j<THNR; j++)
+					for (int j=0; j<RENR; j++)
 						thisG[j] = (a[j]+a_tmp[j])/(2.0*Theta[j])*tau;
 				} else {
 					performStiffTau(X, Theta, StoichMatrix, critical, tau, k, thisG, run_options);
@@ -435,7 +435,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 					double r = uniformDist(); // (generator)
 					double cumsum=0.0;
 					int j;
-					for (j = 0; j < THNR; ++j) {
+					for (j = 0; j < RENR; ++j) {
 						if (!critical[j])
 							continue;
 						cumsum += a[j];
@@ -451,7 +451,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 					// use explicit tau leaping
 					// tau-leap the non-critical reactions
 
-					for (int j = 0; j < THNR; ++j) {
+					for (int j = 0; j < RENR; ++j) {
 						if (critical[j])
 							continue;
 
@@ -468,7 +468,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 					exLeap++;
 					SSA_flag = true;
 					computePropensities(X_tmp, Theta, 0, a_tmp_ptr);
-					for (int j=0; j<THNR; j++)
+					for (int j=0; j<RENR; j++)
 						thisG[j] = (a[j]+a_tmp[j])/(2.0*Theta[j])*tau;
 				} else {
 					performStiffTau(X, Theta, StoichMatrix, critical, tau, k, thisG, run_options);
@@ -480,12 +480,11 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 			// update states
 			invalidLeap = false;
 			copy(X, X+SPNR, Xnew);
-			for (int j = 0; j < THNR; ++j) {
+			for (int j = 0; j < RENR; ++j) {
 				for (auto it = reactionMap[j].begin(); it != reactionMap[j].end(); it++)
 					Xnew[*it] += k[j]*S(*it,j);
 			}
 //			invalidLeap = any_of(Xnew, Xnew+SPNR, [](int i){return i<0;});
-			bool invalidLeap = false;
 			for (int i = 0; i < SPNR; ++i) {
 				if (Xnew[i]<0) {
 					invalidLeap = true;
@@ -497,7 +496,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 			{
 				for (int i=0; i< SPNR; i++)
 					X[i] = Xnew[i];
-				for (int j = 0; j < THNR; ++j) {
+				for (int j = 0; j < RENR; ++j) {
 					R[j] += (double)k[j];
 					G[j] += thisG[j];
 #ifdef DEBUG
@@ -514,9 +513,6 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 				tau_1 /= 2;
 			}
 		}
-
-
-
 	}
 
 	CALL_STATS call_stats;
@@ -536,7 +532,7 @@ void performSSA(double *X,const double *Theta,const int *StoichMatrix,const doub
 	static boost::variate_generator<base_generator_type&, boost::uniform_real<> > uniformDist(generator, uni_dist);
 
 
-	double a[THNR];
+	double a[RENR];
 	double *a_ptr[] = {a};
     int lastReaction = -1;
     
@@ -544,7 +540,7 @@ void performSSA(double *X,const double *Theta,const int *StoichMatrix,const doub
 		computePropensities(X, Theta, lastReaction+1, a_ptr);
 		// compute a0
 		double a0 = 0.0;
-		for (int j=0; j<THNR; j++)
+		for (int j=0; j<RENR; j++)
 			a0 += a[j];
 
 		if (a0 < DBL_EPSILON) {
@@ -557,7 +553,7 @@ void performSSA(double *X,const double *Theta,const int *StoichMatrix,const doub
 		double r = uniformDist(); // uniformDist(generator);
 		double cumsum = 0.0;
 		int j;
-		for (j=0; j<THNR; j++)
+		for (j=0; j<RENR; j++)
 		{
 			// check for rounding error?
 			if (a[j] < DBL_EPSILON)
@@ -586,13 +582,13 @@ void performSSA(double *X,const double *Theta,const int *StoichMatrix,const doub
 			// time runs out
 			tau = dt-t;
 			t = dt;
-			for (int j = 0; j < THNR; j++) {
+			for (int j = 0; j < RENR; j++) {
 				G[j]+=a[j]*tau/Theta[j];
 			}
 			break;
 		}
 
-		for (int j = 0; j < THNR; j++) {
+		for (int j = 0; j < RENR; j++) {
 			G[j]+=a[j]*tau/Theta[j];
 		}
 		t += tau;
@@ -619,20 +615,20 @@ void performStiffTau(const double *X0, const double *Theta, const int *StoichMat
 	// J_F(x'(n)) = I - tau/2 S*da/dx'
 	// compute da/dx' from the propensity functions ahead of time and link it in
 
-//	double *a = dalloc(THNR);
-	double a[THNR];
+//	double *a = dalloc(RENR);
+	double a[RENR];
 	double *a_ptr[] = {a};
 	double X[SPNR];
 	copy(X0,X0+SPNR,X);
 
 	computePropensities(X, Theta, 0, a_ptr);
 
-	double a0[THNR];
-	copy(a,a+THNR,a0);
+	double a0[RENR];
+	copy(a,a+RENR,a0);
 
 	// get Poisson jumps
-	int P[THNR];
-	for (int j = 0; j < THNR; ++j) {
+	int P[RENR];
+	for (int j = 0; j < RENR; ++j) {
 		if (critical[j])
 		{
 			P[j] = 0;
@@ -650,23 +646,23 @@ void performStiffTau(const double *X0, const double *Theta, const int *StoichMat
 
 	// first guess for X(t+tau) = X(t) + S*P
 	for (int i = 0; i < SPNR; ++i) {
-		for (int j=0; j < THNR; j++) {
+		for (int j=0; j < RENR; j++) {
 			X[i] += P[j]*S(i,j);
 		}
 	}
 
 	int iter=0;
 	double deltaX = 1E6;
-	double k1[THNR], k2[THNR], F[SPNR];
+	double k1[RENR], k2[RENR], F[SPNR];
 	double Sk1[SPNR], Sk2[SPNR];
 //	double invJF[SPNR];
 
 	// compute k1
-	for (int j = 0; j < THNR; ++j) {
+	for (int j = 0; j < RENR; ++j) {
 		k1[j] = static_cast<double>(P[j]) - tau/2.0 * a[j];
 	}
 	// compute S*k1
-	MVprod(SPNR, THNR, StoichMatrix, k1, Sk1);
+	MVprod(SPNR, RENR, StoichMatrix, k1, Sk1);
 
 	computePropensities(X, Theta, 0, a_ptr);
 
@@ -674,11 +670,11 @@ void performStiffTau(const double *X0, const double *Theta, const int *StoichMat
 	// solve for next value of X
 	while (iter++ < MAX_ITER && deltaX > NEWTON_EPS) {
 		// compute k2
-		for (int i = 0; i < THNR; ++i) {
+		for (int i = 0; i < RENR; ++i) {
 			k2[i] = tau/2.0*a[i];
 		}
 		// compute S*k2
-		MVprod(SPNR, THNR, StoichMatrix, k2, Sk2);
+		MVprod(SPNR, RENR, StoichMatrix, k2, Sk2);
 		// compute F
 		for (int i = 0; i < SPNR; ++i) {
 			F[i] = -(X[i] - X0[i] - Sk1[i] - Sk2[i]); // evaluated at X'_n
@@ -725,17 +721,17 @@ void performStiffTau(const double *X0, const double *Theta, const int *StoichMat
 	}
 
 	// get k2 from the final state
-	for (int i = 0; i < THNR; ++i) {
+	for (int i = 0; i < RENR; ++i) {
 		k2[i] = tau/2.0*a[i];
 	}
 
 	// approximate integral of G using trapezoidal approximation
-	for (int j = 0; j < THNR; ++j) {
+	for (int j = 0; j < RENR; ++j) {
 		G[j] += (a0[j] + a[j])*tau/2.0/Theta[j];
 	}
 
 	// update R
-	for (int j = 0; j < THNR; j++) {
+	for (int j = 0; j < RENR; j++) {
 		R[j] += static_cast<int>(round(k1[j] + k2[j]));
 	}
 
@@ -771,16 +767,16 @@ void MVprod(const int N,const  int M, const int *A, const double *B, double *Z) 
 void computeG(const double *X, int *StoichMatrix, int *StoichMatrix_ed, double *g) {
 	// determine highest order reaction of each species
 	static bool computeOrders = true;
-	static int HOR[SPNR], HEO[SPNR], RO[THNR];
+	static int HOR[SPNR], HEO[SPNR], RO[RENR];
 
 	if (computeOrders) {
 
-		fill_n(RO, THNR, 0);
+		fill_n(RO, RENR, 0);
 		fill_n(HOR, SPNR, 0);
 		fill_n(HEO, SPNR, 0);
 
 		// compute reaction orders
-		for (int j = 0; j < THNR; ++j) {
+		for (int j = 0; j < RENR; ++j) {
 			for (int i = 0; i < SPNR; ++i) {
 				RO[j] += Sed(i,j) != 0 ? 1:0;
 			}
@@ -788,14 +784,14 @@ void computeG(const double *X, int *StoichMatrix, int *StoichMatrix_ed, double *
 
 		for (int i = 0; i < SPNR; ++i) {
 			HOR[i] = 0;
-			for (int j = 0; j < THNR; ++j) {
+			for (int j = 0; j < RENR; ++j) {
 				HOR[i] = max(HOR[i], (Sed(i,j) != 0) ? RO[j] : 0);
 			}
 		}
 
 		// highest order educt reaction
 		for (int i = 0; i < SPNR; ++i) {
-			for (int j = 0; j < THNR; ++j) {
+			for (int j = 0; j < RENR; ++j) {
 				HEO[i] = max(HEO[i], abs(Sed(i,j)));
 			}
 		}

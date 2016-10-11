@@ -1,7 +1,7 @@
 function mlPrepareModel( modelDir, mexName, sbmlModel, opts )
 [ S, Sed, Prop, ReacDep ] = mlSBML2StoichProp(sbmlModel, true, true);
 % Model definition
-mlGenModelDefh(fullfile(modelDir, 'model_def.h'), length(sbmlModel.species), length(sbmlModel.parameter));
+mlGenModelDefh(fullfile(modelDir, 'model_def.h'), length(sbmlModel.species), length(sbmlModel.reaction), length(sbmlModel.parameter));
 % StoichiometrixMatrix
 mlGenStoichMatrixCCode(S, Sed, fullfile(modelDir, 'computeStoichiometrixMatrix.cpp'));
 % Jacobian @f/@x
