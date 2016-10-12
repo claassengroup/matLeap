@@ -92,7 +92,7 @@ struct RUN_OPTIONS {
 			NEWTON_EPS = value;
 		} else if(field.compare("MAX_ITER") == 0) {
 			MAX_ITER = value;
-		} else if(field.compare("SSA_CONDITION == 0_NUMBER") == 0) {
+		} else if(field.compare("SSA_CONDITION_NUMBER") == 0) {
 			SSA_CONDITION_NUMBER = value;
 		} else if(field.compare("CRITICAL_NUMBER") == 0) {
 			CRITICAL_NUMBER = value;
@@ -114,10 +114,10 @@ struct RUN_OPTIONS {
 	}
 
 	void print() {
-		cout << DELTA_PE << endl << N_STIFF << endl << NEWTON_EPS << endl
-				<< MAX_ITER << endl << SSA_CONDITION_NUMBER << endl << CRITICAL_NUMBER << endl
-				<< USE_IMPLICIT << endl << N_SSA_1 << endl << N_SSA_2 << endl << EPSILON  << endl
-				<< N_C << endl << SSA_ONLY << endl;
+		cout << "DELTA_PE " << DELTA_PE << endl << "N_STIFF " << N_STIFF << endl << "NEWTON_EPS " << NEWTON_EPS << endl
+				<< "MAX_ITER " << MAX_ITER << endl << "SSA_CONDITION_NUMBER " << SSA_CONDITION_NUMBER << endl << "CRITICAL_NUMBER " << CRITICAL_NUMBER << endl
+				<< "USE_IMPLICIT " << USE_IMPLICIT << endl << "N_SSA_1 " << N_SSA_1 << endl << "N_SSA_2 " << N_SSA_2 << endl << "EPSILON  " << EPSILON  << endl
+				<< "N_C " << N_C << endl << "SSA_ONLY " << SSA_ONLY << endl;
 	}
 };
 

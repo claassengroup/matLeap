@@ -49,6 +49,11 @@ CALL_STATS tauLeaping (const double *X0, const double *Theta, int NIntervals, co
 		bool writeOutput, vector<OUTPUT_HANDLE> &fileHandles) {
 	// perform the tau leaping, outputting results at each of the intervals
 
+
+	// DEBUG
+//	run_options.print();
+
+
 	// copy the left time point to the output
 	copy(X0, X0+SPNR, X);
 	fill_n(R, (NIntervals+1)*RENR, 0.0);
@@ -342,7 +347,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 			}
 
 			// step 4: check if need to use SSA now
-			if (SSA_ONLY || tau_1 < SSA_CONDITION_NUMBER * 1.0/a0 || ac0 > a0/CRITICAL_NUMBER)
+			if (SSA_ONLY || (tau_1 < (SSA_CONDITION_NUMBER * 1.0/a0)) || ac0 > a0/CRITICAL_NUMBER)
 			{
 				int SSA_steps = (SSA_flag) ? ssaSteps1 : ssaSteps2;
 				SSA_flag = true;
@@ -383,6 +388,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 			// step 6: choose tau and fire reactions
 			if (tau_2 > tau_1)
 			{
+				// tau leaping interval less than time to critical reaction
 				tau = tau_1;
 				if (t+tau > dt)
 				{
@@ -391,7 +397,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 
 				if (!stiff || !USE_IMPLICIT)
 				{
-					// not stiff: regular tau leaping
+					// not stiff: explicit tau leaping
 					// no critical reactions firing
 					for (int j = 0; j < RENR; ++j) {
 						if (critical[j])
@@ -446,7 +452,7 @@ CALL_STATS tauLeapingInterval (const double *X0, const double *R0, const double 
 					// don't update state until the end of the interval
 				}
 
-				if (!USE_IMPLICIT || !stiff || (stiff && tau_2 <= tau_ex))
+				if (!USE_IMPLICIT || !stiff || (stiff && (tau_2 <= tau_ex)))
 				{
 					// use explicit tau leaping
 					// tau-leap the non-critical reactions
